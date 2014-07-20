@@ -1,0 +1,20 @@
+- name: update apt cache
+  apt: update_cache=yes
+
+- name: upgrade all safe packages
+  apt: upgrade=safe
+
+- name: install must haves
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - language-pack-en
+
+- name: ensure a locale exists
+  locale_gen: name=en_US.UTF-8 state=present
+
+- name: install nice to haves
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - htop
+
+- include: ssh.yml tags=ssh

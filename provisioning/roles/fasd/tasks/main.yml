@@ -1,0 +1,22 @@
+- name: download fasd tarball
+  get_url: url=https://github.com/clvv/fasd/tarball/1.0.1 dest=/src/fasd.tar.gz
+
+- name: untar fasd
+  command: tar xvfz fasd.tar.gz chdir=/src
+
+- name: install fasd
+  command: make install creates=/usr/local/bin/fasd chdir=/src/clvv-fasd-4822024
+
+- name: configure bashrc to run fasd on system startup
+  lineinfile: dest=/home/{{ main_user_name }}/.bashrc
+    state=present
+    line='{{ lookup('file', 'fasd.bashrc')}}'
+    insertafter=EOF
+    create=yes
+
+- name: remove fasd remnants
+  file: path=/src/{{ item }} state=absent
+  with_items:
+    - clvv-fasd-4822024
+    - fasd.tar.gz
+  ignore_errors: yes

@@ -1,0 +1,15 @@
+- hosts: all
+  user: "{{ main_user_name }}"
+  sudo: yes
+  vars_files:
+    - vars/defaults.yml
+    - vars/{{ env }}.yml
+
+  roles:
+    - common
+    - git
+    - rvm
+    - nginx
+    - redis
+    - tmux
+    - fasd

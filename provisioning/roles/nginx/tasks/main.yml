@@ -1,0 +1,15 @@
+- name: install nginx
+  apt: pkg=nginx state=installed
+
+- name: remove default site
+  file: path=/etc/nginx/{{ item }} state=absent
+  with_items:
+    - sites-available/default
+    - sites-enabled/default
+
+# - name: add site
+#   template: src=site.j2 dest=/etc/nginx/sites-available/{{ domain }}
+#
+# - name: enable site
+#   file: src=/etc/nginx/sites-available/{{ domain }} dest=/etc/nginx/sites-enabled/{{ domain }} state=link
+#   notify: restart nginx

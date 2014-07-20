@@ -1,0 +1,11 @@
+- name: send identity file to remote box
+  copy: content="{{ private_key }}" dest=/home/{{ main_user_name }}/.ssh/id_rsa mode=0600 owner={{ main_user_name }} group={{ main_user_name }}
+
+- name: send public key to remote box
+  copy: content="{{ public_key }}" dest=/home/{{ main_user_name }}/.ssh/id_rsa.pub mode=0600 owner={{ main_user_name }} group={{ main_user_name }}
+
+- name: add host user to remote authorized keys
+  authorized_key: user={{ main_user_name }} key="{{ public_key }}"
+
+- name: set vagrant user to nopasswd
+  lineinfile: dest=/etc/sudoers state=present regexp="^vagrant" line="vagrant ALL=(ALL) NOPASSWD:ALL"

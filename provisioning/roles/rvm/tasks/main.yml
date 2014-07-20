@@ -1,0 +1,6 @@
+- name: install rvm
+  sudo: no
+  shell: \curl -sSL https://get.rvm.io | bash -s -- --ignore-dotfiles creates=/home/{{ main_user_name }}/.rvm
+
+- name: add rvm to bashrc
+  lineinfile: dest=/home/{{ main_user_name }}/.bashrc line="source /home/{{ main_user_name }}/.rvm/scripts/rvm"

@@ -1,0 +1,7 @@
+- name: install dependencies
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - python-software-properties
+
+- name: install redis
+  apt: pkg=redis-server state=installed
