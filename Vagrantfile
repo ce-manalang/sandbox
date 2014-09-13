@@ -4,7 +4,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "sandbox"
   config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
   config.vm.network "private_network", ip: "192.168.111.223"
-  config.vm.hostname = "sandbox.local"
+  config.vm.hostname = "sandbox.loc"
   config.vm.synced_folder "src/", "/src", nfs: true
   config.vm.provider "virtualbox" do |v|
     mem = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / 2
