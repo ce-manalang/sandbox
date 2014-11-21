@@ -1,11 +1,11 @@
-upstream {{ domain }} {
+upstream spotholder.sandbox.loc {
   server 127.0.0.1:3000;
 }
 server {
   listen   80;
-  server_name {{ domain }};
+  server_name spotholder.sandbox.loc;
 
-  root     /srv/dg3-storefront/public;
+  root     /src/spotholder/public;
   index    index.html;
 
   location / {
@@ -17,6 +17,6 @@ server {
   }
 
   location @ruby {
-    proxy_pass http://{{ domain }};
+    proxy_pass http://spotholder.sandbox.loc;
   }
 }
