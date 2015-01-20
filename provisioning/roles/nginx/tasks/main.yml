@@ -13,3 +13,10 @@
 - name: enable spotholder site
   file: src=/etc/nginx/sites-available/spotholder.sandbox.loc dest=/etc/nginx/sites-enabled/spotholder.sandbox.loc state=link
   notify: restart nginx
+
+- name: add onegoodcode site
+  template: src=onegoodcode.sandbox.j2 dest=/etc/nginx/sites-available/onegoodcode.sandbox.loc
+
+- name: enable onegoodcode site
+  file: src=/etc/nginx/sites-available/onegoodcode.sandbox.loc dest=/etc/nginx/sites-enabled/onegoodcode.sandbox.loc state=link
+  notify: restart nginx
