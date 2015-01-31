@@ -20,3 +20,10 @@
 - name: enable onegoodcode site
   file: src=/etc/nginx/sites-available/onegoodcode.sandbox.loc dest=/etc/nginx/sites-enabled/onegoodcode.sandbox.loc state=link
   notify: restart nginx
+
+- name: add miyaw site
+  template: src=miyaw.sandbox.j2 dest=/etc/nginx/sites-available/miyaw.sandbox.loc
+
+- name: enable miyaw site
+  file: src=/etc/nginx/sites-available/miyaw.sandbox.loc dest=/etc/nginx/sites-enabled/miyaw.sandbox.loc state=link
+  notify: restart nginx
